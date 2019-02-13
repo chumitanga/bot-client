@@ -3,49 +3,24 @@ package be.riots.botclient.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Comparable<User> {
 
-    private long id;
-    private long height;
+    private int id;
     private String name;
-    private String location;
-    private GpsSensor gpsSensor;
+    private String password;
+    private ArrayList<LogSession> logSessions;
+    ArrayList<Route> routes;
 
-    public User() {
-    }
-
-    public User(long id, long height, String name, String location, GpsSensor gpsSensor) {
-        this.id = id;
-        this.height = height;
-        this.name = name;
-        this.location = location;
-        this.gpsSensor = gpsSensor;
-    }
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public long getHeight() {
-        return height;
-    }
-
-    public void setHeight(long height) {
-        this.height = height;
     }
 
     public String getName() {
@@ -56,28 +31,33 @@ public class User implements Comparable<User> {
         this.name = name;
     }
 
-    public GpsSensor getGpsSensor() {
-        return gpsSensor;
+    public String getPassword() {
+        return password;
     }
 
-    public void setGpsSensor(GpsSensor gpsSensor) {
-        this.gpsSensor = gpsSensor;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "Mountain{" +
-                "id=" + id +
-                ", height=" + height +
-                ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
-                ", coordinates=" + gpsSensor +
-                '}';
+    public ArrayList<LogSession> getLogSessions() {
+        return logSessions;
+    }
+
+    public void setLogSessions(ArrayList<LogSession> logSessions) {
+        this.logSessions = logSessions;
+    }
+
+    public ArrayList<Route> getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(ArrayList<Route> routes) {
+        this.routes = routes;
     }
 
     @Override
     public int compareTo(User user) {
-        return (int)(this.getHeight() - user.getHeight());
-       // return this.getName().compareTo(mountain.getName());
+        //fix LOMBOK!!!!!!!!!!!!!
+       return this.getName().compareTo(user.getName());
     }
 }
